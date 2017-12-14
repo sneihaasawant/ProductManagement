@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <div *ngFor='let product of productList; let idx = index'>
+        <p>------------------------------------------</p>
+            
+            <p>Id : {{product.id}} </p>
+            <p>Title : {{product.title}} </p>
+            <p>Price : ${{product.price}}</p>
+            <button [routerLink]="['/edit', product.id]">Edit</button> 
+            <form (submit)='onDelete(idx)'><input type='submit' value='Delete'></form> 
+        </div>
+
+</body>
+</html>

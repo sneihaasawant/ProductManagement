@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <form (submit)="onSubmit()" #productForm='ngForm'>
+        <p>Id : <input type='number' name='id' required [(ngModel)]='product.id'></p>
+
+        <p>Title : 
+            <input type='text' name='title' 
+            required 
+            minlength="4" 
+            [(ngModel)]='product.title' 
+            [ngClass]="{ boxborder : title.errors }"
+              #title="ngModel"></p>
+          <span *ngIf='title.errors'>Error : </span>
+          <span *ngIf='title.errors?.required'>Title is required</span>
+          <span *ngIf='title.errors?.minlength'>Minimum length is {{title.errors.minlength.requiredLength}}</span>
+
+      <p>Price :
+        <input type='text' name='price' 
+        required 
+        [(ngModel)]='product.price' 
+        [ngClass]="{ boxborder : price.errors }"
+          #price="ngModel"></p>
+      <span *ngIf='price.errors'>Error : </span>
+      <span *ngIf='price.errors?.required'>Price is required</span>
+           
+
+      <p><input type='submit' value='Update' [disabled]='!productForm.valid'></p>
+      <p><button>Delete</button></p>
+    </form>
+   </body>
+</html>
